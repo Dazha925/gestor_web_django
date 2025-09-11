@@ -1,0 +1,55 @@
+{# BACKEND: Extiende la plantilla base definida en base.html #}
+{% extends "base.html" %}
+
+{# BACKEND: Define el bloque de título que se mostrará en la pestaña del navegador o encabezado #}
+{% block titulo %} Nosotros {% endblock %}
+
+{# BACKEND: Inicia el bloque de contenido principal que se insertará en base.html #}
+{% block contenido %}
+
+<!-- FRONTEND: Contenedor principal con una fila de Bootstrap -->
+<div class="row align-items-md-stretch">
+
+  <!-- FRONTEND: Sección de contacto por WhatsApp -->
+  <div class="col-md-12">
+    <div class="h-100 p-5 bg-success text-white border rounded-3">
+      <h2>Teléfonos</h2>
+      <p>
+        Puedes comunicarte con nosotros vía WhatsApp para soporte técnico, consultas sobre el sistema o sugerencias de mejora.  
+        Estamos disponibles de lunes a viernes, de 8:00 a.m. a 5:00 p.m.
+      </p>
+
+      <!-- FRONTEND: Botón con mensaje predefinido para el número 412 -->
+      <a href="https://wa.me/584120554335?text=Hola%2C%20necesito%20soporte%20t%C3%A9cnico%20con%20mi%20cuenta" 
+         class="btn btn-dark w-60 mb-2">
+        WhatsApp: +58 412-0554335
+      </a>
+
+      <!-- FRONTEND: Botón con mensaje predefinido para el número 426 -->
+      <a href="https://wa.me/584264501272?text=Hola%2C%20necesito%20soporte%20t%C3%A9cnico%20con%20mi%20cuenta" 
+         class="btn btn-dark w-60 mb-2">
+        WhatsApp: +58 426-4501272
+      </a>
+    </div>
+  </div>
+
+  <!-- FRONTEND: Sección de contacto por correo electrónico -->
+  <div class="col-md-12">
+    <div class="h-100 p-5 bg-light border rounded-3">
+      <h2>Correos Electrónicos</h2>
+      <p>
+        También puedes contactarnos por correo electrónico para consultas generales, soporte técnico o sugerencias de mejora. 
+        Responderemos a tus mensajes dentro de las 24 horas hábiles.
+      </p>
+
+      <!-- FRONTEND: Botón que abre Gmail con destinatario y asunto predefinido -->
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=jajr1305@gmail.com&su=Consulta%20desde%20el%20sistema" 
+         target="_blank" class="btn btn-success w-60 mb-2">
+        Enviar correo al desarrollador (Gmail)
+      </a>
+    </div>
+  </div>
+</div>
+
+{# BACKEND: Cierra el bloque de contenido que será renderizado en base.html #}
+{% endblock %}

@@ -1,0 +1,39 @@
+<form method="post">
+  {% csrf_token %} <!-- Protección contra ataques CSRF -->
+
+  
+  <!-- FRONTEND: Campo para editar el nombre de usuario -->
+  <div class="mb-3">
+    <label for="username" class="form-label">Nombre de usuario</label>
+    <input type="text" class="form-control"  id="username" name="username" value="{{ usuario.username }}" required>
+  </div>
+
+  <!-- FRONTEND: Campo para editar el correo electrónico -->
+  <div class="mb-3">
+    <label for="email" class="form-label">Correo electrónico</label>
+    <input type="email" class="form-control" id="email" name="email" value="{{ usuario.email }}" required>
+  </div>
+
+   {% for campo in formulario %}
+    <!-- FRONTEND: Campo generado dinámicamente desde el formulario -->
+    <div class="mb-3">
+      <label for="{{ campo.id_for_label }}" class="form-label">{{ campo.label }}</label>
+      {{ campo }}
+    </div>
+
+    <!-- FRONTEND: Mensajes de error para cada campo -->
+    <div class="col-12 help-text text-danger">
+      {{ campo.errors }}
+    </div>
+  {% endfor %}
+
+  <!-- FRONTEND: Campo para ingresar una nueva contraseña (opcional) -->
+  <div class="mb-3">
+    <label for="password" class="form-label">Nueva contraseña (opcional)</label>
+    <input type="password" class="form-control" id="password" name="password" placeholder="••••••">
+  </div>
+  <!-- FRONTEND: Botones para enviar el formulario o cancelar -->  
+  <input class="btn btn-secondary" type="submit" value="Aceptar" />
+  
+  <a class="btn btn-dark" href="{% url 'usuarios' %}" role="button">Cancelar</a>
+</form>

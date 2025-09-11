@@ -1,0 +1,64 @@
+{# BACKEND: Extiende la plantilla base definida en base.html #}
+{% extends "base.html" %}
+
+{# BACKEND: Define el bloque de título que se mostrará en la pestaña del navegador o encabezado #}
+{% block titulo %} Lista de usuarios {% endblock %}
+
+{# BACKEND: Inicia el bloque de contenido principal que se insertará en base.html #}
+{% block contenido %} 
+
+<!-- FRONTEND: Tarjeta visual que contiene la tabla -->
+<div class="card">
+  
+  <!-- FRONTEND: Cuerpo de la tarjeta -->
+  <div class="card-body">
+    <h4 class="card-title">Lista de Usuarios</h4>
+
+    <!-- FRONTEND: Contenedor responsivo para la tabla -->
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover table-striped">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Usuario</th>
+            <th scope="col">Correo</th>
+            <th scope="col">Contraseña</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for user in usuarios %}
+          <tr>
+            <!-- BACKEND: Datos del modelo personalizado 'usuariolist' -->
+            <td>{{ user.id }}</td>
+            <td>{{ user.user.username }}</td>
+            <td>{{ user.correo }}</td>
+
+            <!-- FRONTEND: Contraseña oculta por seguridad -->
+            <td>••••••</td>
+
+            <!-- FRONTEND + BACKEND: Botones de acción -->
+            <td>
+              <a class="btn btn-success btn-sm rounded-2" href="{% url 'editar_usuario' user.id %}">Editar</a>
+            <!-- BACKEND: Evita que el usuario actual pueda eliminar su propia cuenta -->
+              {% if user.user != request.user %}
+                | <a class="btn btn-danger btn-sm rounded-2" href="{% url 'eliminar_usuario' user.id %}">Eliminar</a>
+              {% else %}
+                | <span class="text-muted">Tu cuenta</span>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- FRONTEND: Pie de la tarjeta (actualmente vacío) -->
+  <div class="card-footer text-muted">
+    Total de usuarios: {{ usuarios|length }}
+  </div>
+</div>
+
+{# BACKEND: Cierra el bloque de contenido que será renderizado en base.html #}
+{% endblock %}    

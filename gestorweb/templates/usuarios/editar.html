@@ -1,0 +1,26 @@
+{# BACKEND: Extiende la plantilla base definida en base.html #}
+{% extends "base.html" %}
+
+{# BACKEND: Define el bloque de título que se mostrará en la pestaña del navegador o encabezado #}
+{% block titulo %} Editar usuario {% endblock %}
+
+{# BACKEND: Inicia el bloque de contenido principal que se insertará en base.html #}
+{% block contenido %} 
+
+<!-- FRONTEND: Tarjeta visual que contiene el formulario de edición -->
+<div class="card">
+
+  <!-- FRONTEND: Encabezado de la tarjeta -->
+  <div class="card-header">Editar información del usuario</div>
+
+  <!-- FRONTEND: Cuerpo de la tarjeta con título y formulario -->
+  <div class="card-body">
+    <h4 class="card-title">Datos del usuario</h4>
+
+    {# BACKEND: Inserta el formulario desde una plantilla parcial (usuarios/form.html) #}
+    {% include 'usuarios/form.html' %}
+  </div>
+</div>
+
+{# BACKEND: Cierra el bloque de contenido que será renderizado en base.html #}
+{% endblock %}    

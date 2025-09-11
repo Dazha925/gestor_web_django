@@ -1,0 +1,36 @@
+{# BACKEND: Extiende la plantilla base definida en base.html #}
+{% extends "base.html" %}
+
+{# BACKEND: Define el bloque de título que se mostrará en la pestaña del navegador o encabezado #}
+{% block titulo %} Inicio {% endblock %}
+
+{# BACKEND: Inicia el bloque de contenido principal que se insertará en base.html #}
+{% block contenido %}
+
+<!-- FRONTEND: Contenedor principal con estructura de Bootstrap -->
+<div class="row align-items-md-stretch">
+    <div class="col-md-12">
+        <div class="h-100 p-5 bg-light">
+            
+            <!-- FRONTEND + BACKEND: Mensaje de bienvenida con nombre del usuario autenticado -->
+            <h2 class="text-dark">Bienvenido <a href="#">@{{ request.user.username }}</a></h2>
+
+            <!-- FRONTEND: Texto descriptivo debajo del título -->
+            <p class="mb-4 text-muted">
+                Gestiona tu cuenta y mantén tus datos actualizados.
+            </p>
+
+            <!-- FRONTEND + BACKEND: Botón que redirige a la vista 'usuarios' -->
+            <a
+                name=""
+                id=""
+                class="btn btn-outline-success w-50"
+                href="{% url 'usuarios' %}"
+                role="button"
+            >Consultar</a>
+        </div>
+    </div>
+</div>
+
+{# BACKEND: Cierra el bloque de contenido que será renderizado en base.html #}
+{% endblock %}
