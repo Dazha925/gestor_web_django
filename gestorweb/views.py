@@ -16,6 +16,9 @@ from django.contrib.auth.models import User  # Crear, buscar y modificar usuario
 # Funciones de autenticación y gestión de sesión
 from django.contrib.auth import authenticate, login  # Logica en la vista 'login_usuario'
 
+from django.conf import settings
+
+from django.core.mail import send_mail
 
 # Vista para iniciar sesión (django)
 def login_usuario(request):
@@ -89,6 +92,25 @@ def inicio(request):
 def nosotros(request):
     return render(request, 'paginas/nosotros.html')
 
+# Vista para enviar correo desde el formulario de contacto
+def enviar_correo(request):
+    if request.method == 'POST':
+        remitente = request.POST.get('remitente')
+        asunto = request.POST.get('asunto')
+        mensaje = request.POST.get('mensaje')
+
+        mensaje_completo = f"Mensaje enviado por: {remitente}\n\n{mensaje}"
+
+        send_mail(
+            subject=asunto,
+            message=mensaje_completo,
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=['jajr1305@gmail.com'],  # correo fijo
+            fail_silently=False,
+        )
+        return redirect('nosotros')
+
+
 # Vista para listar usuarios registrados (tabla)
 def usuarios(request):
     listado_usuarios = usuariolist.objects.select_related('user').all()
@@ -131,3 +153,4 @@ def confirmacion_eliminar_usuario(request, id):
     usuario.user.delete()  # Elimina el usuario relacionado en auth_user
     usuario.delete()
     return redirect('usuarios')
+
