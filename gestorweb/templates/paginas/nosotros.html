@@ -42,13 +42,27 @@
         Responderemos a tus mensajes dentro de las 24 horas hábiles.
       </p>
 
-      <!-- FRONTEND: Botón que abre Gmail con destinatario y asunto predefinido -->
-      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=jajr1305@gmail.com&su=Consulta%20desde%20el%20sistema" 
-         target="_blank" class="btn btn-success w-60 mb-2">
-        Enviar correo al desarrollador (Gmail)
-      </a>
+      <!-- FRONTEND: Formulario interno para enviar correo desde el sistema -->
+<form method="POST" action="{% url 'enviar_correo' %}">
+  {% csrf_token %}
+  <div class="mb-3">
+    <label for="remitente" class="form-label">De:</label>
+    <input type="email" class="form-control" id="remitente" name="remitente" placeholder="tu@email.com" required>
+  </div>
+  <div class="mb-3">
+    <label for="asunto" class="form-label">Asunto:</label>
+    <input type="text" class="form-control" id="asunto" name="asunto" placeholder="Consulta, sugerencia, reporte..." required>
+  </div>
+  <div class="mb-3">
+    <label for="mensaje" class="form-label">Mensaje:</label>
+    <textarea class="form-control" id="mensaje" name="mensaje" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Enviar</button>
+</form>
+
     </div>
   </div>
+
 </div>
 
 {# BACKEND: Cierra el bloque de contenido que será renderizado en base.html #}
