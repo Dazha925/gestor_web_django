@@ -17,6 +17,9 @@ urlpatterns = [
     # Ruta: Contacto con desarrolladores (enlaces a WhatsApp)
     path('nosotros', views.nosotros, name='nosotros'),
 
+    # Ruta: Envío de correo desde el formulario de contacto
+    path('enviar-correo/', views.enviar_correo, name='enviar_correo'),
+
     # Ruta: Listado de usuarios registrados
     path('usuarios', views.usuarios, name='usuarios'),
 
@@ -29,3 +32,4 @@ urlpatterns = [
     # Ruta: Ejecución de eliminación (con ID específico)
     path('usuarios/confirmacion_eliminar_usuario/<int:id>', views.confirmacion_eliminar_usuario, name="confirmacion_eliminar_usuario"),
 ]
+
